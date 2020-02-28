@@ -4,16 +4,11 @@ export const initialState = {
       item: "Initial Item",
       completed: false,
       id: Date.now()
-    },
-    {
-      item: "Initial Item 2",
-      completed: false,
-      id: 121512512512
     }
   ]
 };
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_ITEM":
       console.log(state.tasks);
