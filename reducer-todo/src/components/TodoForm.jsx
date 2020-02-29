@@ -1,37 +1,32 @@
-import React, { useState, useReducer } from "react";
-import { initialState, reducer } from "../reducers/reducer";
+import React, { useState } from "react";
 
-function TodoForm() {
+function TodoForm(props) {
   const [text, setText] = useState("");
-  const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleChange = e => {
     setText(e.target.value);
   };
 
-  const addItem = item => {
-    const newItem = {
-      item: item,
-      id: Date.now(),
-      completed: false
-    };
-
-    dispatch({ type: "ADD_ITEM", payload: newItem });
-  };
-
-  const addTodo = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    addItem(text);
   };
 
   return (
     <div>
-      <form onSubmit={addTodo}>
+      <form onSubmit={handleSubmit}>
         <input type="text" name="item" value={text} onChange={handleChange} />
-        <button type="submit" name="addTodo">
+        <button
+          onClick={() => props.dispatch({ type: "ADD_ITEM", payload: text })}
+          name="addTodo"
+        >
           Add Todo
         </button>
-        <button name="clearCompleted">Clear Completed</button>
+        <button
+          name="clearCompleted"
+          onClick={() => props.dispatch({ type: "CLEAR_SELECTED" })}
+        >
+          Clear Completed
+        </button>
       </form>
     </div>
   );

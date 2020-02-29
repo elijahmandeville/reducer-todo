@@ -1,10 +1,16 @@
 import React from "react";
 
 function Todo(props) {
-  console.log("TODO", props.todo.item);
+  console.log("TODO", props.todo);
   return (
     <div>
-      <p>{props.todo.item}</p>
+      <p
+        onClick={() =>
+          props.dispatch({ type: "TOGGLE_ITEM", payload: props.todo.id })
+        }
+      >
+        {props.todo.item}
+      </p>
     </div>
   );
 }

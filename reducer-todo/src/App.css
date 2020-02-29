@@ -12,3 +12,7 @@ h1 {
   text-align: center;
   margin: auto;
 }
+
+p {
+  font-size: 1.3rem;
+}
